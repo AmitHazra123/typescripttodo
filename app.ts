@@ -1,8 +1,10 @@
-var container = document.getElementById('container');
+var array = [
+    "Pick up drycleaning",
+    "Clean Batcave",
+    "Save Gotham"
+];
 
-for (var x = 0; x <= 5; x ++) {
-    const counter = x;
-    // counter = 1;
+for (var value of array) {
+    // var value = array[index];
+    console.log(`${value}`);
 }
-
-// console.log(counter);
