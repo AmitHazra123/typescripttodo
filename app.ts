@@ -1,16 +1,8 @@
 var container = document.getElementById('container');
 
-var todo = {
-    id: 123,
-    name: "Pick up drycleaning",
-    completed: true
+for (var x = 0; x <= 5; x ++) {
+    const counter = x;
+    // counter = 1;
 }
 
-var displayName = `Todo #${todo.id}`
-
-container.innerHTML = `
-<div todo='${todo.id}' class="list-group-item">
-    <i class="${ todo.completed ? "" : "hidden" }"></i>
-    <span class="name">${todo.name}</span>
-</div>
-`
+// console.log(counter);
