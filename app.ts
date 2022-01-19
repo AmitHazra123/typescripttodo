@@ -1,12 +1,16 @@
 var container = document.getElementById('container');
 
-function countdown(initial, final = 0, interval = 1) {
-    var current = initial;
-
-    while(current > final) {
-        container.innerHTML = current;
-        current -= interval;
-    }
+var todo = {
+    id: 123,
+    name: "Pick up drycleaning",
+    completed: true
 }
 
-countdown(10, 0, 1);
+var displayName = `Todo #${todo.id}`
+
+container.innerHTML = `
+<div todo='${todo.id}' class="list-group-item">
+    <i class="${ todo.completed ? "" : "hidden" }"></i>
+    <span class="name">${todo.name}</span>
+</div>
+`
