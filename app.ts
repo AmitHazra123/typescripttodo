@@ -1,10 +1,17 @@
-var array = [
-    "Pick up drycleaning",
-    "Clean Batcave",
-    "Save Gotham"
-];
+var container = document.getElementById('container');
 
-for (var value of array) {
-    // var value = array[index];
-    console.log(`${value}`);
+function Counter(el) {
+    
+    this.count = 0;
+
+    el.innerHTML = this.count;
+
+    el.addEventListener('click',
+        () => {
+            this.count += 1;
+            el.innerHTML = this.count;
+        }
+    );
 }
+
+new Counter(container);
