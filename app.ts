@@ -1,30 +1,26 @@
-var array = [123, "Pick up drycleaning", false];
-var [id, title, completed] = array;
+function calculate (action, ...values) {
+    var total = 0;
 
-var a = 1;
-var b = 5;
-
-[a, b] = [b, a];
-
-function getTodo(id) {
-    var todo = {
-        id1: 123,
-        title1: "Pick up drycleaning",
-        completed1: false
+    for (var value of values) {
+        switch(action) {
+            case 'add':
+                total += value;
+                break;
+            case 'subtract':
+                total -= value;
+                break;
+        }
     }
-    return todo;
+
+    return total;
 }
 
-var { id1, title1, completed1 } = getTodo(123);
+calculate('subtract', 1, 2, 3, 4, 5);
 
-function countdown({
-    initial,
-    final: final = 0,
-    interval: interval = 1,
-    initial: current
-}) {
-    while (current > final) {
-        console.log(current);
-        current -= interval;
-    }
-}
+var source = [3, 4, 5];
+var target = [1, 2, ...source, 6, 7];
+
+var list = [1, 2, 3];
+var toAdd = [4, 5, 6];
+
+list.push(...toAdd);
