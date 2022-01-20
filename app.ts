@@ -1,20 +1,16 @@
-function totalLength(x: string, y: string): number
-function totalLength(x: any[], y: any[]): number
-function totalLength(x: string | any[], y: string | any[]): number
-function totalLength(x: string | any[], y: string | any[]): number {
-    
-    x.slice(0);
 
-    if(x instanceof Array) {
-        x.push('abc')
-    }
-
-    if(typeof x === "string") {
-        x.substr(1);
-    }
-
-    let total: number = x.length + y.length;
-    return total;
+interface Todo {
+    name: string;
+    completed?: boolean;
 }
 
-totalLength('hello', [1, 2, 3]);
+interface ITodoService {
+    add(todo: Todo): Todo;
+    delete(todoId: number): void;
+    getAll(): Todo[];
+    getById(todoId: number): Todo;
+}
+
+var todo: Todo = {
+    name: 'Pick up drycleaning'
+};
