@@ -1,16 +1,12 @@
-
-interface Todo {
-    name: string;
-    completed?: boolean;
+interface jQuery {
+    (selector: string): HTMLElement;
+    version: number;
 }
 
-interface ITodoService {
-    add(todo: Todo): Todo;
-    delete(todoId: number): void;
-    getAll(): Todo[];
-    getById(todoId: number): Todo;
+var $ = <jQuery>function(selector) {
+    // Find DOM element
 }
 
-var todo: Todo = {
-    name: 'Pick up drycleaning'
-};
+$.version = 1.12;
+
+var element = $('#container');
