@@ -1,3 +1,6 @@
+function totalLength(x: string, y: string): number
+function totalLength(x: any[], y: any[]): number
+function totalLength(x: string | any[], y: string | any[]): number
 function totalLength(x: string | any[], y: string | any[]): number {
     
     x.slice(0);
@@ -13,3 +16,5 @@ function totalLength(x: string | any[], y: string | any[]): number {
     let total: number = x.length + y.length;
     return total;
 }
+
+totalLength('hello', [1, 2, 3]);
