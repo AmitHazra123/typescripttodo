@@ -1,17 +1,22 @@
-var $ = function (selector) {
-    // Find DOM Element
+var TodoState;
+(function (TodoState) {
+    TodoState[TodoState["New"] = 1] = "New";
+    TodoState[TodoState["Active"] = 2] = "Active";
+    TodoState[TodoState["Complete"] = 3] = "Complete";
+    TodoState[TodoState["Deleted"] = 4] = "Deleted";
+})(TodoState || (TodoState = {}));
+var todo = {
+    name: "Pick up drycleaning",
+    state: TodoState.New
 };
-$.version = 1.12;
-$.fn.todo = function (todo) {
-    if (todo) {
-        $(this).data('todo', todo);
+/**
+ * New = 1
+ * Active = 2
+ * Complete = 3
+ * Deleted = 4
+ */
+function delete1(todo) {
+    if (todo.state != TodoState.Complete) {
+        throw "Can't delete incomplete task!";
     }
-    else {
-        return $(this).data('todo');
-    }
-};
-var todo = { name: "Pick up drycleaning" };
-var container = $('#container');
-container.data('todo', todo);
-var savedTodo = container.data('todo');
-container.todo(todo);
+}
