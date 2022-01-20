@@ -32,7 +32,46 @@ var TodoState;
     TodoState[TodoState["Complete"] = 3] = "Complete";
     TodoState[TodoState["Deleted"] = 4] = "Deleted";
 })(TodoState || (TodoState = {}));
-var todo = {
-    name: "Pick up drycleaning",
-    state: TodoState.New
-};
+// var todo: Todo = {
+//     name: "Pick up drycleaning",
+//     get state() {
+//         return this._state;
+//     },
+//     set state(newState) {
+//         if(newState == TodoState.Complete) {
+//             var canBeCompleted =
+//                 this.state == TodoState.Active
+//                 || this.state == TodoState.Deleted;
+//             if(!canBeCompleted) {
+//                 throw "Todo must be Active or Deleted in order to be marked Completed";
+//             }
+//         }
+//         this._state = newState;
+//     }
+// }
+var SmartTodo = /** @class */ (function () {
+    function SmartTodo(name) {
+        this.name = name;
+    }
+    Object.defineProperty(SmartTodo.prototype, "state", {
+        get: function () {
+            return this._state;
+        },
+        set: function (newState) {
+            if (newState == TodoState.Complete) {
+                var canBeCompleted = this.state == TodoState.Active
+                    || this.state == TodoState.Deleted;
+                if (!canBeCompleted) {
+                    throw "Todo must be Active or Deleted in order to be marked Completed";
+                }
+            }
+            this._state = newState;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return SmartTodo;
+}());
+var todo = new SmartTodo("Pick up drycleaning");
+todo.state = TodoState.Complete;
+todo.state;
