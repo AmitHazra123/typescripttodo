@@ -1,29 +1,8 @@
-enum TodoState {
-    New = 1,
-    Active,
-    Complete,
-    Deleted
-}
+var todo: { name: string };
 
-interface Todo {
-    name: string;
-    state: TodoState;
-}
+todo = { name: 'Amit' };
 
-var todo: Todo = {
-    name: "Pick up drycleaning",
-    state: TodoState.New
-}
-
-/**
- * New = 1
- * Active = 2
- * Complete = 3
- * Deleted = 4
- */
-
-function delete1(todo: Todo) {
-    if(todo.state != TodoState.Complete) {
-        throw "Can't delete incomplete task!"
-    }
+function totalLength(x: { length: number }, y: { length: number }): number {
+    var total: number = x.length + y.length;
+    return total;
 }
