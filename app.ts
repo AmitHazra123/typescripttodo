@@ -1,11 +1,13 @@
-const osPrefix = 'os_';
-
-var support = {
-    [osPrefix + 'Windows']: isSupported('Windows'),
-    [osPrefix + 'iOS']: isSupported('iOS'),
-    [osPrefix + 'Android']: isSupported('Android')
+var animal = {
+    name: "Fido",
+    species: "Dog",
+    speak: function() {
+        console.log('Woof!');
+    }
 }
 
-function isSupported(os) {
-    return Math.random() >= 0.5;
+function makeTheAnimalSpeak(animal) {
+    animal.speak();
 }
+
+makeTheAnimalSpeak(animal);
