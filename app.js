@@ -13,9 +13,16 @@ var TodoService = /** @class */ (function () {
     function TodoService(todos) {
         this.todos = todos;
     }
+    TodoService.prototype.add = function (todo) {
+        var newId = TodoService.getNextId();
+    };
     TodoService.prototype.getAll = function () {
         return this.todos;
     };
+    TodoService.getNextId = function () {
+        return TodoService.lastId += 1;
+    };
+    TodoService.lastId = 0;
     return TodoService;
 }());
 var TodoState;
