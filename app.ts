@@ -12,7 +12,15 @@ TodoService.prototype.getAll = function() {
 
 class TodoService {
 
-    static lastId: number = 0;
+    private static lastId: number = 0;
+
+    private get nextId() {
+        return TodoService.getNextId();
+    }
+
+    private set nextId(nextId) {
+        TodoService.lastId = nextId - 1;
+    }
 
     constructor(private todos: Todo[]) {
     }
@@ -21,7 +29,7 @@ class TodoService {
         var newId = TodoService.getNextId();
     }
 
-    getAll() {
+    private getAll() {
         return this.todos;
     }
 
@@ -67,7 +75,6 @@ interface Todo {
 
 class SmartTodo {
     _state: TodoState
-    name: string;
 
     get state() {
         return this._state;
@@ -90,8 +97,7 @@ class SmartTodo {
         this._state = newState;
     }
 
-    constructor(name: string) {
-        this.name = name;
+    constructor(public name: string) {
     }
 }
 
@@ -102,7 +108,7 @@ todo.state = TodoState.Complete;
 todo.state;
 
 abstract class TodoStateChanger {
-    constructor(private newState: TodoState) {
+    constructor(protected newState: TodoState) {
     }
 
     abstract canChangeState(todo: Todo): boolean;
@@ -119,6 +125,7 @@ abstract class TodoStateChanger {
 class CompleteTodoStateChanger extends TodoStateChanger {
     constructor() {
         super(TodoState.Complete);
+        this.newState;
     }
 
     canChangeState(todo: Todo): boolean {

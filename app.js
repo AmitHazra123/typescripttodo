@@ -28,6 +28,16 @@ var TodoService = /** @class */ (function () {
     function TodoService(todos) {
         this.todos = todos;
     }
+    Object.defineProperty(TodoService.prototype, "nextId", {
+        get: function () {
+            return TodoService.getNextId();
+        },
+        set: function (nextId) {
+            TodoService.lastId = nextId - 1;
+        },
+        enumerable: false,
+        configurable: true
+    });
     TodoService.prototype.add = function (todo) {
         var newId = TodoService.getNextId();
     };
@@ -105,7 +115,9 @@ var TodoStateChanger = /** @class */ (function () {
 var CompleteTodoStateChanger = /** @class */ (function (_super) {
     __extends(CompleteTodoStateChanger, _super);
     function CompleteTodoStateChanger() {
-        return _super.call(this, TodoState.Complete) || this;
+        var _this = _super.call(this, TodoState.Complete) || this;
+        _this.newState;
+        return _this;
     }
     CompleteTodoStateChanger.prototype.canChangeState = function (todo) {
         return !!todo && (todo.state == TodoState.Active
