@@ -101,13 +101,11 @@ todo.state = TodoState.Complete;
 
 todo.state;
 
-class TodoStateChanger {
+abstract class TodoStateChanger {
     constructor(private newState: TodoState) {
     }
 
-    canChangeState(todo: Todo): boolean {
-        return !!todo;
-    }
+    abstract canChangeState(todo: Todo): boolean;
 
     changeState(todo: Todo): Todo {
         if(this.canChangeState(todo)) {
@@ -124,7 +122,7 @@ class CompleteTodoStateChanger extends TodoStateChanger {
     }
 
     canChangeState(todo: Todo): boolean {
-        return super.canChangeState(todo) && (
+        return !!todo && (
             todo.state == TodoState.Active
             || todo.state == TodoState.Deleted
         );
