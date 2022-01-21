@@ -10,40 +10,40 @@ TodoService.prototype.getAll = function() {
 
 */
 
-class TodoService {
+// class TodoService {
 
-    private static lastId: number = 0;
+//     private static lastId: number = 0;
 
-    private get nextId() {
-        return TodoService.getNextId();
-    }
+//     private get nextId() {
+//         return TodoService.getNextId();
+//     }
 
-    private set nextId(nextId) {
-        TodoService.lastId = nextId - 1;
-    }
+//     private set nextId(nextId) {
+//         TodoService.lastId = nextId - 1;
+//     }
 
-    constructor(private todos: Todo[]) {
-    }
+//     constructor(private todos: Todo[]) {
+//     }
 
-    add(todo: Todo) {
-        var newId = TodoService.getNextId();
-    }
+//     add(todo: Todo) {
+//         var newId = TodoService.getNextId();
+//     }
 
-    private getAll() {
-        return this.todos;
-    }
+//     private getAll() {
+//         return this.todos;
+//     }
 
-    static getNextId() {
-        return TodoService.lastId += 1;
-    }
-}
+//     static getNextId() {
+//         return TodoService.lastId += 1;
+//     }
+// }
 
-enum TodoState {
-    New = 1,
-    Active,
-    Complete,
-    Deleted
-}
+// enum TodoState {
+//     New = 1,
+//     Active,
+//     Complete,
+//     Deleted
+// }
 
 interface Todo {
     name: string,

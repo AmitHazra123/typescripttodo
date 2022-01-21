@@ -24,39 +24,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var TodoService = /** @class */ (function () {
-    function TodoService(todos) {
-        this.todos = todos;
-    }
-    Object.defineProperty(TodoService.prototype, "nextId", {
-        get: function () {
-            return TodoService.getNextId();
-        },
-        set: function (nextId) {
-            TodoService.lastId = nextId - 1;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    TodoService.prototype.add = function (todo) {
-        var newId = TodoService.getNextId();
-    };
-    TodoService.prototype.getAll = function () {
-        return this.todos;
-    };
-    TodoService.getNextId = function () {
-        return TodoService.lastId += 1;
-    };
-    TodoService.lastId = 0;
-    return TodoService;
-}());
-var TodoState;
-(function (TodoState) {
-    TodoState[TodoState["New"] = 1] = "New";
-    TodoState[TodoState["Active"] = 2] = "Active";
-    TodoState[TodoState["Complete"] = 3] = "Complete";
-    TodoState[TodoState["Deleted"] = 4] = "Deleted";
-})(TodoState || (TodoState = {}));
 // var todo: Todo = {
 //     name: "Pick up drycleaning",
 //     get state() {
