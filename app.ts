@@ -1,30 +1,12 @@
-var array: number[] = [1, 2, 3];
-var array2: Array<number> = [1, 2, 3];
-
-class KeyValuePair<TKey, TValue> {
-    constructor(
-        public key: TKey,
-        public value: TValue
-    ) {
-
-    }
+interface IHaveALength {
+    length: number;
 }
 
-let pair1 = new KeyValuePair<number, string>(1, 'First');
-let pair2 = new KeyValuePair<string, Date>('Second', new Date(Date.now()));
-let pair3 = new KeyValuePair<number, string>(3, 'Third');
-
-class KeyValuePirPrinter<T, U> {
-    constructor(private pairs: KeyValuePair<T, U>[]){
-
-    }
-
-    print() {
-        for (let p of this.pairs) {
-            console.log(`${p.key}: ${p.value}`);
-        }
-    }
+function totalLength<T extends IHaveALength, U extends IHaveALength>(x: T, y: U) {
+    var total: number = x.length + y.length;
+    return total;
 }
 
-var printer = new KeyValuePirPrinter([pair1, pair3]);
-printer.print();
+class CustomArray<T> extends Array<T> {}
+
+var length = totalLength([1, 2, 3], 'asdfasdf');

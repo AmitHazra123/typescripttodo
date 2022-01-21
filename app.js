@@ -1,26 +1,27 @@
-var array = [1, 2, 3];
-var array2 = [1, 2, 3];
-var KeyValuePair = /** @class */ (function () {
-    function KeyValuePair(key, value) {
-        this.key = key;
-        this.value = value;
-    }
-    return KeyValuePair;
-}());
-var pair1 = new KeyValuePair(1, 'First');
-var pair2 = new KeyValuePair('Second', new Date(Date.now()));
-var pair3 = new KeyValuePair(3, 'Third');
-var KeyValuePirPrinter = /** @class */ (function () {
-    function KeyValuePirPrinter(pairs) {
-        this.pairs = pairs;
-    }
-    KeyValuePirPrinter.prototype.print = function () {
-        for (var _i = 0, _a = this.pairs; _i < _a.length; _i++) {
-            var p = _a[_i];
-            console.log("".concat(p.key, ": ").concat(p.value));
-        }
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
     };
-    return KeyValuePirPrinter;
-}());
-var printer = new KeyValuePirPrinter([pair1, pair3]);
-printer.print();
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+function totalLength(x, y) {
+    var total = x.length + y.length;
+    return total;
+}
+var CustomArray = /** @class */ (function (_super) {
+    __extends(CustomArray, _super);
+    function CustomArray() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return CustomArray;
+}(Array));
+var length = totalLength([1, 2, 3], 'asdfasdf');
