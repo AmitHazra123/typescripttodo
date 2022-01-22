@@ -18,17 +18,3 @@ namespace TodoApp.Model {
     }
 
 }
-
-namespace DataAcess {
-
-    import Model = TodoApp.Model;
-    import Todo = Model.Todo;
-
-    export interface ITodoService {
-        add(todo: Todo): Todo;
-        delete(todoId: number): void;
-        getAll(): Todo[];
-        getById(todoId: number): Todo;
-    }
-
-}
