@@ -1,17 +1,16 @@
 import { Todo as TodoTask, TodoState } from './model';
-import './jQuery';
+import { TodoService } from './DataAccess';
 
-let todo: TodoTask;
+let service = new TodoService([]);
 
-interface IHaveALength {
-    length: number;
-}
+service.add({
+    id: 1,
+    name: 'Pick up drycleaning',
+    state: TodoState.New
+});
 
-function totalLength<T extends IHaveALength, U extends IHaveALength>(x: T, y: U) {
-    var total: number = x.length + y.length;
-    return total;
-}
+let todos = service.getAll();
 
-class CustomArray<T> extends Array<T> {}
-
-var length = totalLength([1, 2, 3], 'asdfasdf');
+todos.forEach(todo =>
+    console.log(`${todo.name} [${TodoState[todo.state]}]`)
+)

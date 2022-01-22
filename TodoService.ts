@@ -1,3 +1,0 @@
-interface IIdGenerator {
-    nextId: number;
-}

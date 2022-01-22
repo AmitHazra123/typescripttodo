@@ -8,6 +8,10 @@
 </head>
 <body>
     <div id="container" style="font-size: 100px;"></div>
-    <script src="app.js" type="text/javascript"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.22/system.js"></script>
+    <script type="text/javascript">
+        System.defaultJSExtensions = true;
+        System.import('app');
+    </script>
 </body>
 </html>
