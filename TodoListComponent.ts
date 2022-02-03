@@ -1,23 +1,36 @@
-var TodoListComponent = /** @class */ (function () {
-    function TodoListComponent(el) {
+declare var $: any;
+
+class TodoListComponent {
+    
+    private $el: jQuery;
+
+    constructor (el: HTMLElement) {
         this.$el = $(el);
     }
-    TodoListComponent.prototype.render = function (todos) {
+
+    render (todos): void {
+
         this.$el.html('');
+        
         if (!todos.length) {
-            this.$el.html("<div class='list-group-item text-center text-giant'>" +
+            this.$el.html(
+                "<div class='list-group-item text-center text-giant'>" +
                 "    <strong>You've completed everything you needed to do!</strong>" +
-                "</div>");
+                "</div>"
+            );
+            
             return;
         }
-        for (var index in todos) {
+        
+        for(var index in todos) {
             var todo = todos[index];
             this.renderTodo(todo).appendTo(this.$el);
         }
     };
-    ;
-    TodoListComponent.prototype.renderTodo = function (todo) {
-        return $("<div class='todo-item list-group-item " + (todo.state == 2 ? 'completed' : '') + "'>" +
+
+    private renderTodo(todo) {
+        return $(
+            "<div class='todo-item list-group-item "+ (todo.state == 2 ? 'completed' : '') +"'>" +
             "   <div class='row'>" +
             "       <div class='col-md-2 text-center'>" +
             "           <i class='incomplete glyphicon glyphicon-unchecked text-muted text-giant'></i>" +
@@ -29,11 +42,12 @@ var TodoListComponent = /** @class */ (function () {
             "        </div>" +
             "    </div>" +
             "    <div class='clearfix'></div>" +
-            "</div>").on('click', function () {
+            "</div>"
+        ).on('click', function() {
             var event = document.createEvent('CustomEvent');
             event.initCustomEvent('todo-toggle', true, true, { todoId: todo.id });
             this.dispatchEvent(event);
         });
-    };
-    return TodoListComponent;
-}());
+    }
+
+}
