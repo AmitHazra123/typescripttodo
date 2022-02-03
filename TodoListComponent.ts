@@ -1,6 +1,9 @@
+import { Todo, TodoState } from './Model';
+import "//code.jquery.com/jquery-1.12.1.min.js";
+
 declare var $: any;
 
-class TodoListComponent {
+export default class TodoListComponent {
     
     private $el: any;
 
