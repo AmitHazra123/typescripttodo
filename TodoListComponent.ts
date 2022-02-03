@@ -1,8 +1,6 @@
-declare var $: any;
-
 class TodoListComponent {
     
-    private $el: jQuery;
+    private $el: any;
 
     constructor (el: HTMLElement) {
         this.$el = $(el);
