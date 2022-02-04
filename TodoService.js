@@ -1,4 +1,4 @@
-System.register(["./Model"], function (exports_1, context_1) {
+System.register(["./Model", "./Validators"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6,7 +6,7 @@ System.register(["./Model"], function (exports_1, context_1) {
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var Model_1, _lastId, TodoService;
+    var Model_1, Validators_1, _lastId, TodoService;
     var __moduleName = context_1 && context_1.id;
     function generateTodoId() {
         return _lastId += 1;
@@ -39,6 +39,9 @@ System.register(["./Model"], function (exports_1, context_1) {
         setters: [
             function (Model_1_1) {
                 Model_1 = Model_1_1;
+            },
+            function (Validators_1_1) {
+                Validators_1 = Validators_1_1;
             }
         ],
         execute: function () {
@@ -54,11 +57,10 @@ System.register(["./Model"], function (exports_1, context_1) {
                 }
                 TodoService.prototype.add = function (input) {
                     // console.log(`add(${JSON.stringify(input)})`);
-                    var todo = {
-                        id: generateTodoId(),
-                        name: null,
-                        state: Model_1.TodoState.Active
-                    };
+                    var todo = new Validators_1.ValidatableTodo();
+                    todo.id = generateTodoId();
+                    todo.name = null;
+                    todo.state = Model_1.TodoState.Active;
                     if (typeof input === 'string') {
                         todo.name = input;
                     }
@@ -67,6 +69,11 @@ System.register(["./Model"], function (exports_1, context_1) {
                     }
                     else {
                         throw 'Invalid Todo name!';
+                    }
+                    var errors = todo.validate();
+                    if (errors.length) {
+                        var combinedErrors = errors.map(function (x) { return "".concat(x.property, ": ").concat(x.message); });
+                        throw "Invalid Todo: ".concat(combinedErrors);
                     }
                     this.todos.push(todo);
                     // console.log(`add(${JSON.stringify(input)}) => ${JSON.stringify(todo)}`);

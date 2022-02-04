@@ -1,4 +1,5 @@
 import { Todo, TodoState } from './Model';
+import { ValidatableTodo } from './Validators';
 
 export interface ITodoService {
     add(todo: Todo): Todo;
@@ -38,11 +39,10 @@ export default class TodoService implements ITodoService {
 
         // console.log(`add(${JSON.stringify(input)})`);
 
-        var todo: Todo = {
-            id: generateTodoId(),
-            name: null,
-            state: TodoState.Active
-        };
+        var todo = new ValidatableTodo();
+        todo.id = generateTodoId();
+        todo.name = null;
+        todo.state = TodoState.Active;
 
         if(typeof input === 'string') {
             todo.name = input;
@@ -51,6 +51,14 @@ export default class TodoService implements ITodoService {
             todo.name = input.name;
         } else {
             throw 'Invalid Todo name!';
+        }
+
+        let errors = todo.validate();
+        if(errors.length) {
+            
+            let combinedErrors = errors.map(x => `${x.property}: ${x.message}`);
+            throw `Invalid Todo: ${combinedErrors}`; 
+
         }
 
         this.todos.push(todo);
