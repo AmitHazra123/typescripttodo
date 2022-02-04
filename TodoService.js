@@ -1,5 +1,11 @@
 System.register(["./Model"], function (exports_1, context_1) {
     "use strict";
+    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
     var Model_1, _lastId, TodoService;
     var __moduleName = context_1 && context_1.id;
     function generateTodoId() {
@@ -8,6 +14,26 @@ System.register(["./Model"], function (exports_1, context_1) {
     function clone(src) {
         var clone = JSON.stringify(src);
         return JSON.parse(clone);
+    }
+    // var originalMethod = TodoService.prototype.add;
+    // TodoService.prototype.add = function(...args) {
+    //     console.log(`add(${JSON.stringify(args)})`);
+    //     let returnValue = originalMethod.apply(this, args);
+    //     console.log(`add(${JSON.stringify(args)}) => ${JSON.stringify(returnValue)}`);
+    //     return returnValue;
+    // }
+    function log(target, methodName, descriptor) {
+        var originalMethod = descriptor.value;
+        descriptor.value = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            console.log("".concat(methodName, "(").concat(JSON.stringify(args), ")"));
+            var returnValue = originalMethod.apply(this, args);
+            console.log("".concat(methodName, "(").concat(JSON.stringify(args), ") => ").concat(JSON.stringify(returnValue)));
+            return returnValue;
+        };
     }
     return {
         setters: [
@@ -27,6 +53,7 @@ System.register(["./Model"], function (exports_1, context_1) {
                     }
                 }
                 TodoService.prototype.add = function (input) {
+                    // console.log(`add(${JSON.stringify(input)})`);
                     var todo = {
                         id: generateTodoId(),
                         name: null,
@@ -42,6 +69,7 @@ System.register(["./Model"], function (exports_1, context_1) {
                         throw 'Invalid Todo name!';
                     }
                     this.todos.push(todo);
+                    // console.log(`add(${JSON.stringify(input)}) => ${JSON.stringify(todo)}`);
                     return todo;
                 };
                 ;
@@ -77,6 +105,9 @@ System.register(["./Model"], function (exports_1, context_1) {
                     }
                     return null;
                 };
+                __decorate([
+                    log
+                ], TodoService.prototype, "add", null);
                 return TodoService;
             }());
             exports_1("default", TodoService);
