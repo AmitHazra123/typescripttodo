@@ -33,7 +33,10 @@ export default class TodoService implements ITodoService {
     // Accepts a todo name or todo object
     add(todo: Todo): Todo
     add(todo: string): Todo
+    @log
     add(input): Todo {
+
+        // console.log(`add(${JSON.stringify(input)})`);
 
         var todo: Todo = {
             id: generateTodoId(),
@@ -51,6 +54,8 @@ export default class TodoService implements ITodoService {
         }
 
         this.todos.push(todo);
+
+        // console.log(`add(${JSON.stringify(input)}) => ${JSON.stringify(todo)}`);
 
         return todo;
     };
@@ -101,5 +106,33 @@ export default class TodoService implements ITodoService {
         }
         
         return null;
+    }
+}
+
+// var originalMethod = TodoService.prototype.add;
+
+// TodoService.prototype.add = function(...args) {
+
+//     console.log(`add(${JSON.stringify(args)})`);
+
+//     let returnValue = originalMethod.apply(this, args);
+
+//     console.log(`add(${JSON.stringify(args)}) => ${JSON.stringify(returnValue)}`);
+
+//     return returnValue;
+// }
+
+function log(target: Object, methodName: string, descriptor: TypedPropertyDescriptor<Function>) {
+    var originalMethod = descriptor.value;
+
+    descriptor.value = function(...args) {
+
+        console.log(`${methodName}(${JSON.stringify(args)})`);
+
+        let returnValue = originalMethod.apply(this, args);
+
+        console.log(`${methodName}(${JSON.stringify(args)}) => ${JSON.stringify(returnValue)}`);
+
+        return returnValue;
     }
 }
