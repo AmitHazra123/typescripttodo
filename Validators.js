@@ -21,15 +21,33 @@ System.register([], function (exports_1, context_1) {
     }
     exports_1("validate", validate);
     function validatable(target) {
-        target.prototype.value = validate;
+        target.prototype.validate = validate;
     }
     exports_1("validatable", validatable);
+    function required(target, propertyName) {
+        var validatable = target, validators = (validatable._validators || (validatable._validators = []));
+        validators.push(function (instance) {
+            var propertyValue = instance[propertyName], isValid = propertyValue != undefined;
+            if (typeof propertyValue === 'string') {
+                isValid = propertyValue && propertyValue.length > 0;
+            }
+            return {
+                isValid: isValid,
+                message: "".concat(propertyName, " is required"),
+                property: propertyName
+            };
+        });
+    }
+    exports_1("required", required);
     return {
         setters: [],
         execute: function () {
             ValidatableTodo = /** @class */ (function () {
                 function ValidatableTodo() {
                 }
+                __decorate([
+                    required
+                ], ValidatableTodo.prototype, "name", void 0);
                 ValidatableTodo = __decorate([
                     validatable
                 ], ValidatableTodo);

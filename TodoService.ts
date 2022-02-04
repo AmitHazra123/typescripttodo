@@ -41,7 +41,6 @@ export default class TodoService implements ITodoService {
 
         var todo = new ValidatableTodo();
         todo.id = generateTodoId();
-        todo.name = null;
         todo.state = TodoState.Active;
 
         if(typeof input === 'string') {

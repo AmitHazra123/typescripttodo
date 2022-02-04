@@ -37,9 +37,9 @@ System.register(["./TodoService", "./TodoListComponent"], function (exports_1, c
                     var _this = this;
                     var addTodoFormEl = el.getElementsByClassName('add-todo')[0], addTodoNameEl = addTodoFormEl.getElementsByTagName('input')[0], todoListEl = el.getElementsByClassName('todo-list')[0], clearCompletedEl = el.getElementsByClassName('clear-completed')[0];
                     addTodoFormEl.addEventListener('submit', function (evnt) {
+                        evnt.preventDefault();
                         _this.addTodo(addTodoNameEl.value);
                         addTodoNameEl.value = '';
-                        evnt.preventDefault();
                     });
                     todoListEl.addEventListener('todo-toggle', function (evnt) {
                         var todoId = evnt.detail.todoId;

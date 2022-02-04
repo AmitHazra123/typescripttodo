@@ -59,7 +59,6 @@ System.register(["./Model", "./Validators"], function (exports_1, context_1) {
                     // console.log(`add(${JSON.stringify(input)})`);
                     var todo = new Validators_1.ValidatableTodo();
                     todo.id = generateTodoId();
-                    todo.name = null;
                     todo.state = Model_1.TodoState.Active;
                     if (typeof input === 'string') {
                         todo.name = input;

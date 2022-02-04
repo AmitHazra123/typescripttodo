@@ -43,9 +43,9 @@ export class TodoApp {
             clearCompletedEl = el.getElementsByClassName('clear-completed')[0];
 
         addTodoFormEl.addEventListener('submit', function(evnt) {
+            evnt.preventDefault();
             _this.addTodo(addTodoNameEl.value)
             addTodoNameEl.value = '';
-            evnt.preventDefault();
         });
 
         todoListEl.addEventListener('todo-toggle', function(evnt) {
